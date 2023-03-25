@@ -8,19 +8,20 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Javascript Code Quiz</title>
 </head>
-<header>
-    <div id="high-score" href="#">View High Scores</div>
-    <div id="timer">Timer goes here</div>
-</header>
 
 <body>
+    <header>
+        <div id="high-score" href="#">View High Scores</div>
+        <div id="timer">Timer goes here</div>
+    </header>
     <div id="intro-page">
         <h1 id="welcome">Coding Quiz Challenge</h1>
-        <p id="quiz-info">Try answering the following code realated questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+        <p id="quiz-info">Try answering the following code realated questions within the time limit. Keep in mind that
+            incorrect answers will penalize your score/time by ten seconds!</p>
         <button id="start-button">Start Quiz</button>
     </div>
 
-    <div id="question-container">
+    <div id="question-container" class="hide">
         <div id="question">Question will go here</div>
         <div id="answer-options">
             <button class="option" id="a"></button>
