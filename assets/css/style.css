@@ -26,6 +26,24 @@ color: purple;
     text-align: end;
 }
 #question {
+    text-align: center;
+    padding: 10px;
     color:rgb(18, 127, 142);
-    font-size: large;
+    font-size: 30px;
+}
+#answer-options {
+    text-align: center;
+    padding-top: 10px;
+}
+#results-page {
+    padding: 50px;
+    text-align: center;
+    color:rgb(18, 127, 142);
+}
+#game-over {
+    font-size: 40px;
+    font-weight: bolder;
+}
+#enter-initials {
+    padding-top: 20px;
 }

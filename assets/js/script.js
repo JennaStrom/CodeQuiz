@@ -7,7 +7,11 @@ const question = document.getElementById("question");
 const answerOptions = document.getElementById("answer-options");
 const answerButtons = Array.from(document.querySelectorAll('.option'));
 console.log(answerButtons);
+const resultsPage = document.getElementById("results-page");
+const highScorePage = document.getElementById("high-score-page");
+const submitButton = document.getElementById("submit-initials")
 
+var initialsHere = document.querySelector("#initials-here")
 var count = 0;
 var userScore = 0;
 var theTime = 60;
@@ -38,15 +42,16 @@ let questions = [
 ];
 
 function showNextQuestion() {
-    if(count >= questions.length) {
-        // show some other page, hide some stuff, do something
+    if (count >= questions.length) {
+        questionContainer.classList.add('hide');
+        resultsPage.classList.remove('hide');
         // runSomeFunction();
         // return!
     }
 
-    question.textContent = questions[count]["question"];
+    question.textContent = questions[count]['question'];
     // using my answerButtons array, loop through the array, and assign the textContent property to be the value of the corresponding position in your question's choices property array
-    for(let i = 0; i < answerButtons.length; i++) {
+    for (let i = 0; i < answerButtons.length; i++) {
         let btn = answerButtons[i];
         console.log(btn);
         btn.textContent = questions[count]['choices'][i];
@@ -66,12 +71,14 @@ function startQuiz() {
 }
 
 function beginTheTime() {
-    const intervalId = setInterval(function() {
-        timer.textContent = `${theTime} seconds left in the quiz`;
+    const intervalId = setInterval(function () {
+        timer.textContent = `${theTime} seconds remaining`;
         theTime--;
-        if(theTime <= 0) {
+        if (theTime <= 0) {
             clearInterval(intervalId);
             timer.textContent = 'Times up!';
+            questionContainer.classList.add('hide');
+            resultsPage.classList.remove('hide');
         }
     }, 1000)
 }
@@ -79,20 +86,26 @@ function beginTheTime() {
 function checkUserSelection(e) {
     console.log('event is', e);
     const target = e.target;
-    if(target.textContent === questions[count][correctAnswer]) {
+    if (target.textContent == questions[count][correctAnswer]) {
         //user selected correctly, now what do you want to have happen?
         // add to the user score since they selected right
         userScore = userScore + 5;
     } else {
+        theTime = theTime - 10;
         // subtract from the time
-        // do this part later
     }
     count++;
     showNextQuestion();
 }
+   //what happens when you click submit on your score
+ //   function storeInitials() {
+//var initials = localStorage.getItem()("initials-here")
+  //  }
 
-// add an event listener to answerOptions
-answerOptions.addEventListener('click', checkUserSelection)
+
 // start quiz event listener
 start.addEventListener("click", startQuiz)
-
+// add an event listener to answerOptions
+answerOptions.addEventListener('click', checkUserSelection)
+// add an event listener to submit-initials
+//submitButton.addEventListener('click', storeInitials)
