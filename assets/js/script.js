@@ -86,7 +86,7 @@ function beginTheTime() {
 function checkUserSelection(e) {
     console.log('event is', e);
     const target = e.target;
-    if (target.textContent == questions[count][correctAnswer]) {
+    if (target.textContent === questions[count].correctAnswer) {
         //user selected correctly, now what do you want to have happen?
         // add to the user score since they selected right
         userScore = userScore + 5;
