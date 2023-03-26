@@ -12,7 +12,7 @@
 <body>
     <header>
         <div id="high-score" href="#">View High Scores</div>
-        <div id="timer">Timer goes here</div>
+        <div id="timer">Timer</div>
     </header>
     <div id="intro-page">
         <h1 id="welcome">Coding Quiz Challenge</h1>
@@ -22,13 +22,27 @@
     </div>
 
     <div id="question-container" class="hide">
-        <div id="question">Question will go here</div>
+        <div id="question"></div>
         <div id="answer-options">
             <button class="option" id="a"></button>
             <button class="option" id="b"></button>
             <button class="option" id="c"></button>
             <button class="option" id="d"></button>
         </div>
+    </div>
+
+    <div id="results-page" class="hide">
+        <div id="game-over">Game Over!</div>
+        <div id="final-score"></div>
+        <div id="enter-initials">
+            <input id="initials-here">
+            <button id="submit-initials">Submit</button>
+        </div>
+    </div>
+    <div id="high-score-page" class="hide">
+        <div>high scores will go here</div>
+        <button id="go-back">Go Back</button>
+        <button id="clear">Clear High Scores</button>
     </div>
     <script src="./assets/js/script.js"></script>
 </body>

@@ -1,5 +1,31 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(177, 220, 189);
+}
 
+button {
+    background-color: rgb(212, 174, 46);
+    border: 10px solid rgb(212, 174, 46);
+    color: white;
+    font-size: large;
+}
 
 .hide {
     display: none;
+}
+#intro-page {
+    text-align: center;
+    color: rgb(18, 127, 142);
+    font-size: large;
+}
+#high-score {
+color: purple;
+}
+#timer {
+    color: purple;
+    text-align: end;
+}
+#question {
+    color:rgb(18, 127, 142);
+    font-size: large;
 }
