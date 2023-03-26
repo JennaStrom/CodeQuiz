@@ -7,10 +7,11 @@ const question = document.getElementById("question");
 const answerOptions = document.getElementById("answer-options");
 const answerButtons = Array.from(document.querySelectorAll('.option'));
 console.log(answerButtons);
-// const choiceA = document.getElementById("a"); const choiceB = document.getElementById("b"); const choiceC = document.getElementById("c"); const choiceD = document.getElementById("d");
+
 var count = 0;
 var userScore = 0;
-var theTime = 5;
+var theTime = 60;
+var correctAnswer = "";
 
 let questions = [
     {
@@ -24,7 +25,7 @@ let questions = [
     }, {
         question: "Javascript is a(n)__________ language?",
         choices: ["Object-Oriented", "Object-Based", "Procedural", "None of the Above"],
-        correct: "Object-Oriented"
+        correctAnswer: "Object-Oriented"
     }, {
         question: "How can a datatype be declared to be a constant type?",
         choices: ["const", "var", "let", "constant"],
@@ -32,7 +33,7 @@ let questions = [
     }, {
         question: "Which function is used to serialize an object into a JSON string in Javascript?",
         choices: ["convert()", "parse()", "Stringify()", "None of the Above"],
-        correct: "Stringify()"
+        correctAnswer: "Stringify()"
     }
 ];
 
@@ -78,7 +79,7 @@ function beginTheTime() {
 function checkUserSelection(e) {
     console.log('event is', e);
     const target = e.target;
-    if(target.textContent == questions[count][correctAnswer]) {
+    if(target.textContent === questions[count][correctAnswer]) {
         //user selected correctly, now what do you want to have happen?
         // add to the user score since they selected right
         userScore = userScore + 5;
