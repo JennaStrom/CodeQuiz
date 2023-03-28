@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <div id="high-score" href="#high-score-page">View High Scores</div>
+        <div id="view-high-score" href="#high-score-page">View High Scores</div>
         <div id="timer">Time: 0</div>
     </header>
     <div id="intro-page">
@@ -33,14 +33,19 @@
 
     <div id="results-page" class="hide">
         <div id="game-over">Game Over!</div>
-        <div id="final-score">Your final score is</div>
+        <span id="final-score">Your final score is</span>
         <div id="enter-initials">
             <input type="text" id="initials-here" placeholder="Your initials here">
             <button id="submit-initials">Submit</button>
         </div>
     </div>
     <div id="high-score-page" class="hide">
-        <div>high scores will go here</div>
+        <h1 id="high-scores">High Scores</h1>
+        <div>
+            <ol id="high-score-list">
+            </ol>
+        </div>
+        <div class="high-score-buttons">
         <button id="go-back">Go Back</button>
         <button id="clear">Clear High Scores</button>
     </div>

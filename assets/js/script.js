@@ -9,14 +9,16 @@ const answerButtons = Array.from(document.querySelectorAll('.option'));
 console.log(answerButtons);
 const resultsPage = document.getElementById("results-page");
 const highScorePage = document.getElementById("high-score-page");
-const submitButton = document.getElementById("submit-initials")
+const submitButton = document.getElementById("submit-initials");
+const finalScore = document.getElementById("final-score");
+const highScoreList =document.getElementById("high-score-list");
 
-var initialsHere = document.querySelector("#initials-here")
+var initialsHere = document.querySelector("#initials-here");
 var count = 0;
 var userScore = 0;
-var theTime = 60;
+var theTime = 30;
 var correctAnswer = "";
-
+let intervalId = "";
 let questions = [
     {
         question: "Which of the following methods can be used to display data in some form using Javascript?",
@@ -45,8 +47,11 @@ function showNextQuestion() {
     if (count >= questions.length) {
         questionContainer.classList.add('hide');
         resultsPage.classList.remove('hide');
+        clearInterval(intervalId);
+        timer.textContent = 'Game Over!';
         // runSomeFunction();
         // return!
+        return;
     }
 
     question.textContent = questions[count]['question'];
@@ -56,6 +61,19 @@ function showNextQuestion() {
         console.log(btn);
         btn.textContent = questions[count]['choices'][i];
     }
+}
+
+function beginTheTime() {
+    intervalId = setInterval(function () {
+        timer.textContent = `${theTime} seconds remaining`;
+        theTime--;
+        if (theTime <= 0) {
+            clearInterval(intervalId);
+            timer.textContent = 'Times up!';
+            questionContainer.classList.add('hide');
+            resultsPage.classList.remove('hide');
+        }
+    }, 1000)
 }
 
 function startQuiz() {
@@ -70,19 +88,6 @@ function startQuiz() {
 
 }
 
-function beginTheTime() {
-    const intervalId = setInterval(function () {
-        timer.textContent = `${theTime} seconds remaining`;
-        theTime--;
-        if (theTime <= 0) {
-            clearInterval(intervalId);
-            timer.textContent = 'Times up!';
-            questionContainer.classList.add('hide');
-            resultsPage.classList.remove('hide');
-        }
-    }, 1000)
-}
-
 function checkUserSelection(e) {
     console.log('event is', e);
     const target = e.target;
@@ -90,6 +95,7 @@ function checkUserSelection(e) {
         //user selected correctly, now what do you want to have happen?
         // add to the user score since they selected right
         userScore = userScore + 5;
+        localStorage.setItem("user-score", userScore);
     } else {
         theTime = theTime - 10;
         // subtract from the time
@@ -97,10 +103,17 @@ function checkUserSelection(e) {
     count++;
     showNextQuestion();
 }
-   //what happens when you click submit on your score
- //   function storeInitials() {
-//var initials = localStorage.getItem()("initials-here")
-  //  }
+//what happens when you click submit on your score
+function storeInitials() {
+    resultsPage.classList.add('hide');
+    highScorePage.classList.remove('hide');
+    localStorage.setItem("initials", initialsHere)
+    //var li = document.createElement("li");
+    //li.textContent = (initialsHere + userScore)
+    //li.setAttribute = ("high-score-list")
+    var initialsHere = localStorage.getItem("initials")
+    highScoreList.textContent = initialsHere;
+}
 
 
 // start quiz event listener
@@ -108,4 +121,4 @@ start.addEventListener("click", startQuiz)
 // add an event listener to answerOptions
 answerOptions.addEventListener('click', checkUserSelection)
 // add an event listener to submit-initials
-//submitButton.addEventListener('click', storeInitials)
+submitButton.addEventListener('click', storeInitials)

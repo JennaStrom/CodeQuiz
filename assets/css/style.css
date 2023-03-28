@@ -8,17 +8,19 @@ button {
     border: 10px solid rgb(212, 174, 46);
     color: white;
     font-size: large;
+    border-radius: 10px;
 }
 
 .hide {
     display: none;
 }
+
 #intro-page {
     text-align: center;
     color: rgb(18, 127, 142);
     font-size: large;
 }
-#high-score {
+#view-high-score {
 color: purple;
 }
 #timer {
@@ -46,4 +48,12 @@ color: purple;
 }
 #enter-initials {
     padding-top: 20px;
+}
+#high-scores {
+    color: rgb(18, 127, 142);
+    text-align: center;
+}
+.high-score-buttons {
+    color:rgb(18, 127, 142);
+    text-align: center;
 }
