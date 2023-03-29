@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(177, 220, 189);
 }
@@ -20,40 +20,60 @@ button {
     color: rgb(18, 127, 142);
     font-size: large;
 }
+
 #view-high-score {
-color: purple;
+    color: purple;
+    background-color: rgb(177, 220, 189);
+    border-color: rgb(177, 220, 189);
 }
+
 #timer {
     color: purple;
     text-align: end;
+    position: absolute;
+    top: 1.5em;
+    right: 2em;
 }
+
 #question {
     text-align: center;
     padding: 10px;
-    color:rgb(18, 127, 142);
+    color: rgb(18, 127, 142);
     font-size: 30px;
 }
+
 #answer-options {
     text-align: center;
     padding-top: 10px;
 }
+
 #results-page {
     padding: 50px;
     text-align: center;
-    color:rgb(18, 127, 142);
+    color: rgb(18, 127, 142);
 }
+
 #game-over {
     font-size: 40px;
     font-weight: bolder;
 }
+
 #enter-initials {
     padding-top: 20px;
 }
+
 #high-scores {
     color: rgb(18, 127, 142);
     text-align: center;
+    font-size: 40px;
 }
+
 .high-score-buttons {
-    color:rgb(18, 127, 142);
+    color: rgb(18, 127, 142);
     text-align: center;
+}
+
+#high-score-list {
+    color: rgb(18, 127, 142);
+    font-size: 30px;
 }

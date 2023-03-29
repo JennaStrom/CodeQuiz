@@ -13,12 +13,12 @@ const submitButton = document.getElementById("submit-initials");
 const finalScore = document.getElementById("final-score");
 const highScoreList = document.getElementById("high-score-list");
 const goBack = document.getElementById("go-back");
-const clear = document.getElementById("clear")
-
+const clear = document.getElementById("clear");
+const viewHighScore = document.getElementById("view-high-score");
 
 var count = 0;
 var userScore = 0;
-var theTime = 30;
+var theTime = 45;
 var correctAnswer = "";
 let intervalId = "";
 let questions = [
@@ -51,8 +51,7 @@ function showNextQuestion() {
         resultsPage.classList.remove('hide');
         clearInterval(intervalId);
         timer.textContent = 'Game Over!';
-        // runSomeFunction();
-        // return!
+
         return;
     }
 
@@ -114,8 +113,8 @@ function storeInitials() {
     window.localStorage.setItem("highScores", JSON.stringify(highScores));
     resultsPage.classList.add('hide');
     highScorePage.classList.remove('hide');
-    highScores.sort(function(a, b){
-        return b.score - a.score 
+    highScores.sort(function (a, b) {
+        return b.score - a.score
     })
     for (var i = 0; i < highScores.length; i++) {
         var li = document.createElement("li")
@@ -125,11 +124,16 @@ function storeInitials() {
 }
 
 function highScoreGoBack() {
-location.reload()
+    location.reload()
 }
-function highScoreClear(){
-window.localStorage.removeItem("highScores")
-highScoreList.textContent = ""
+function highScoreClear() {
+    window.localStorage.removeItem("highScores")
+    highScoreList.textContent = ""
+}
+
+function viewHighScoreFunction() {
+    introPage.classList.add('hide');
+    highScorePage.classList.remove('hide');
 }
 
 // start quiz event listener
@@ -138,5 +142,6 @@ start.addEventListener("click", startQuiz)
 answerOptions.addEventListener('click', checkUserSelection)
 // add an event listener to submit-initials
 submitButton.addEventListener('click', storeInitials)
-goBack.addEventListener ('click', highScoreGoBack)
-clear.addEventListener ("click", highScoreClear)
+goBack.addEventListener('click', highScoreGoBack)
+clear.addEventListener("click", highScoreClear)
+viewHighScore.addEventListener ("click", viewHighScoreFunction)
