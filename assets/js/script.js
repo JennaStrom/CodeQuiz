@@ -11,9 +11,11 @@ const resultsPage = document.getElementById("results-page");
 const highScorePage = document.getElementById("high-score-page");
 const submitButton = document.getElementById("submit-initials");
 const finalScore = document.getElementById("final-score");
-const highScoreList =document.getElementById("high-score-list");
+const highScoreList = document.getElementById("high-score-list");
+const goBack = document.getElementById("go-back");
+const clear = document.getElementById("clear")
 
-var initialsHere = document.querySelector("#initials-here");
+
 var count = 0;
 var userScore = 0;
 var theTime = 30;
@@ -105,16 +107,30 @@ function checkUserSelection(e) {
 }
 //what happens when you click submit on your score
 function storeInitials() {
+    var initialsHere = document.getElementById("initials-here").value;
+    var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+    var newScore = { score: userScore, initials: initialsHere }
+    highScores.push(newScore);
+    window.localStorage.setItem("highScores", JSON.stringify(highScores));
     resultsPage.classList.add('hide');
     highScorePage.classList.remove('hide');
-    localStorage.setItem("initials", initialsHere)
-    //var li = document.createElement("li");
-    //li.textContent = (initialsHere + userScore)
-    //li.setAttribute = ("high-score-list")
-    var initialsHere = localStorage.getItem("initials")
-    highScoreList.textContent = initialsHere;
+    highScores.sort(function(a, b){
+        return b.score - a.score 
+    })
+    for (var i = 0; i < highScores.length; i++) {
+        var li = document.createElement("li")
+        li.textContent = highScores[i].initials + ": " + highScores[i].score
+        highScoreList.append(li)
+    }
 }
 
+function highScoreGoBack() {
+location.reload()
+}
+function highScoreClear(){
+window.localStorage.removeItem("highScores")
+highScoreList.textContent = ""
+}
 
 // start quiz event listener
 start.addEventListener("click", startQuiz)
@@ -122,3 +138,5 @@ start.addEventListener("click", startQuiz)
 answerOptions.addEventListener('click', checkUserSelection)
 // add an event listener to submit-initials
 submitButton.addEventListener('click', storeInitials)
+goBack.addEventListener ('click', highScoreGoBack)
+clear.addEventListener ("click", highScoreClear)
