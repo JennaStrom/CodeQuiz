@@ -51,12 +51,13 @@ function showNextQuestion() {
         resultsPage.classList.remove('hide');
         clearInterval(intervalId);
         timer.textContent = 'Game Over!';
-
+        finalScore.textContent = "Your final score is " + userScore;
+    console.log("final score function " + userScore)
         return;
     }
 
     question.textContent = questions[count]['question'];
-    // using my answerButtons array, loop through the array, and assign the textContent property to be the value of the corresponding position in your question's choices property array
+    // using my answerButtons array, loop through the array, and assign the textContent property to be the value of the corresponding position in the question's choices property array
     for (let i = 0; i < answerButtons.length; i++) {
         let btn = answerButtons[i];
         console.log(btn);
@@ -78,7 +79,7 @@ function beginTheTime() {
 }
 
 function startQuiz() {
-    // immediately add the hide class to your intro-page div
+    // immediately add the hide class to intro-page div
     introPage.classList.add('hide');
     // and then show the question container
     questionContainer.classList.remove('hide');
@@ -88,14 +89,13 @@ function startQuiz() {
     showNextQuestion();
 
 }
-
+//Did they get the question correct?
 function checkUserSelection(e) {
-    console.log('event is', e);
+    //console.log('event is', e);
     const target = e.target;
     if (target.textContent === questions[count].correctAnswer) {
-        //user selected correctly, now what do you want to have happen?
-        // add to the user score since they selected right
         userScore = userScore + 5;
+        console.log(userScore);
         localStorage.setItem("user-score", userScore);
     } else {
         theTime = theTime - 10;
@@ -104,6 +104,7 @@ function checkUserSelection(e) {
     count++;
     showNextQuestion();
 }
+
 //what happens when you click submit on your score
 function storeInitials() {
     var initialsHere = document.getElementById("initials-here").value;
@@ -112,7 +113,13 @@ function storeInitials() {
     highScores.push(newScore);
     window.localStorage.setItem("highScores", JSON.stringify(highScores));
     resultsPage.classList.add('hide');
+    
+    generateHighScores();
+}
+
+function generateHighScores() {
     highScorePage.classList.remove('hide');
+    var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
     highScores.sort(function (a, b) {
         return b.score - a.score
     })
@@ -122,7 +129,6 @@ function storeInitials() {
         highScoreList.append(li)
     }
 }
-
 function highScoreGoBack() {
     location.reload()
 }
@@ -133,7 +139,8 @@ function highScoreClear() {
 
 function viewHighScoreFunction() {
     introPage.classList.add('hide');
-    highScorePage.classList.remove('hide');
+    //double check for repeats
+    generateHighScores();
 }
 
 // start quiz event listener
@@ -144,4 +151,4 @@ answerOptions.addEventListener('click', checkUserSelection)
 submitButton.addEventListener('click', storeInitials)
 goBack.addEventListener('click', highScoreGoBack)
 clear.addEventListener("click", highScoreClear)
-viewHighScore.addEventListener ("click", viewHighScoreFunction)
+viewHighScore.addEventListener("click", viewHighScoreFunction)
