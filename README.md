@@ -5,6 +5,8 @@ Test your JavaScript Knowledge with this test! You have 45 seconds to answer fiv
 
 ## Link to Website
 
+Here is a link to this project: [https://jennastrom.github.io/CodeQuiz/]
+
 ## Screenshot
 ![Screenshot](/assets/images/Screenshot%202023-03-31%20at%2012.42.11%20PM.png)
 

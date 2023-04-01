@@ -143,6 +143,7 @@ function viewHighScoreFunction() {
     generateHighScores();
 }
 
+
 // start quiz event listener
 start.addEventListener("click", startQuiz)
 // add an event listener to answerOptions
