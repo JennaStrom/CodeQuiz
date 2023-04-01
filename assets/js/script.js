@@ -111,10 +111,15 @@ function storeInitials() {
     var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
     var newScore = { score: userScore, initials: initialsHere }
     highScores.push(newScore);
+    if (initialsHere) {
     window.localStorage.setItem("highScores", JSON.stringify(highScores));
     resultsPage.classList.add('hide');
     
     generateHighScores();
+    } else
+    {
+        return;
+    }
 }
 
 function generateHighScores() {
